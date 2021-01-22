@@ -1,0 +1,3 @@
+{% for sudo in item.sudo_commands|default([]) %}
+{{ sudo.user|default(item.name) }} {{ sudo.host | default('ALL') }}=({{ sudo.target_user }}{{ ':' ~ sudo.group if sudo.group is defined else '' }}) {{ 'NOPASSWD:' if sudo.nopasswd|default(true) else '' }} {{ sudo.command|default('ALL') }}
+{% endfor %}

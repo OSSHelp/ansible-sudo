@@ -1,0 +1,14 @@
+---
+- name: install
+  apt:
+    name: "sudo"
+    state: present
+    update_cache: true
+    cache_valid_time: 86400
+
+- name: manage sudoers.d files
+  template:
+    src: sudoers.j2
+    dest: /etc/sudoers.d/{{ item.name }}
+    validate: /usr/sbin/visudo -cf %s
+  loop: "{{ sudoers_files|default([]) }}"

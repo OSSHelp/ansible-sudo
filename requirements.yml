@@ -1,0 +1,3 @@
+---
+- name: users
+  src: https://oss.help/ansible/pub/roles/u/1/users-stable.tar.gz
